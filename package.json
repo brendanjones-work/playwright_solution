@@ -1,5 +1,5 @@
 {
-  "name": "GitHub",
+  "name": "playwright_solution",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,5 +10,8 @@
   "devDependencies": {
     "@playwright/test": "^1.44.1",
     "@types/node": "^20.14.2"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5"
   }
 }

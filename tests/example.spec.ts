@@ -1,10 +1,17 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, request } from '@playwright/test';
+import { baseURLis } from '../globals/globals';
 
-test('has title', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
-
-  // Expect a title "to contain" a substring.
-  await expect(page).toHaveTitle(/Playwright/);
+test('Verify Token', async () => {
+  const requestContext = await request.newContext();
+  process.env.TOKEN = "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJrZXkiOiJCcmVuZGFuX1Rlc3QxMyIsImVtYWlsIjoiYnJ1Y2VvZmJlZXIrMTNAZ21haWwuY29tIiwicmV0dXJuS2V5Ijp0cnVlLCJpYXQiOjE3MTgwMDYwOTUsImV4cCI6MTcxODI2NTI5NX0.O10k65BiR-yiyr9cY22ngJXLcnKhNCbbzmbjmDNNHHdud8QxI-TxZtYCpGEiP5RVxqbqm2o0i3XNhJ5gQkzjwA";
+  const response = await requestContext.get( baseURLis + '/auth/verifytoken', {
+    headers: {
+      "accept": "*/*",
+      "Authorization": `${process.env.TOKEN}`,
+    },
+  });
+  const body = await response.json();
+  console.log(body);
 });
 
 test('get started link', async ({ page }) => {
